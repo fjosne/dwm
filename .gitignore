@@ -1,3 +1,4 @@
 .dwm.log
 *.orig
 *.rej
+config.h
