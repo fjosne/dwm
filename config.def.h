@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -62,6 +63,11 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
+/* volume control */
+static const char *upvol[]   = { "/usr/bin/pulseaudio-ctl", "up", "5", NULL};
+static const char *downvol[] = { "/usr/bin/pulseaudio-ctl", "down", "5", NULL};
+static const char *mutevol[] = { "/usr/bin/pulseaudio-ctl", "mute", NULL};
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -98,6 +104,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { Mod4Mask,                     XK_k,      spawn,          {.v = upvol } },
+    { Mod4Mask,                     XK_j,      spawn,          {.v = downvol } },
+    { Mod4Mask,                     XK_m,      spawn,          {.v = mutevol } },
+
 };
 
 /* button definitions */
