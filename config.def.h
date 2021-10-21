@@ -65,9 +65,13 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "qutebrowser", NULL };
 
 /* volume control */
-static const char *upvol[]   = { "/usr/bin/pulseaudio-ctl", "up", "5", NULL};
-static const char *downvol[] = { "/usr/bin/pulseaudio-ctl", "down", "5", NULL};
-static const char *mutevol[] = { "/usr/bin/pulseaudio-ctl", "mute", NULL};
+static const char *upvol[]   = { "/home/simen/bin/volctrl", "5%+", NULL};
+static const char *downvol[] = { "/home/simen/bin/volctrl", "5%-", NULL};
+static const char *mutevol[] = { "/home/simen/bin/volctrl", "toggle", NULL};
+
+static const char *playnext[] = { "/usr/bin/playerctl", "next", NULL};
+static const char *playprev[] = { "/usr/bin/playerctl", "previous", NULL};
+static const char *playpause[] = { "/usr/bin/playerctl", "play-pause", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -105,10 +109,14 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+    // media controls using windows key
     { Mod4Mask,                     XK_k,      spawn,          {.v = upvol } },
     { Mod4Mask,                     XK_j,      spawn,          {.v = downvol } },
     { Mod4Mask,                     XK_m,      spawn,          {.v = mutevol } },
-    { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+    { Mod4Mask,                     XK_l,      spawn,          {.v = playnext } },
+    { Mod4Mask,                     XK_h,      spawn,          {.v = playprev } },
+    { Mod4Mask,                     XK_space,  spawn,          {.v = playpause } },
 };
 
 /* button definitions */
