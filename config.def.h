@@ -6,8 +6,8 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Source Code Pro:size=12" , "Material Icons:antialias=true:size=12"};
+static const char dmenufont[]       = "Source Code Pro:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -65,8 +65,10 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "qutebrowser", NULL };
 
 /* volume control */
-static const char *upvol[]   = { "/home/simen/bin/volctrl", "5%+", NULL};
-static const char *downvol[] = { "/home/simen/bin/volctrl", "5%-", NULL};
+static const char *largeupvol[]   = { "/home/simen/bin/volctrl", "5%+", NULL};
+static const char *largedownvol[] = { "/home/simen/bin/volctrl", "5%-", NULL};
+static const char *smallupvol[]   = { "/home/simen/bin/volctrl", "1%+", NULL};
+static const char *smalldownvol[] = { "/home/simen/bin/volctrl", "1%-", NULL};
 static const char *mutevol[] = { "/home/simen/bin/volctrl", "toggle", NULL};
 
 static const char *playnext[] = { "/usr/bin/playerctl", "next", NULL};
@@ -109,10 +111,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+    { MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
     // media controls using windows key
-    { Mod4Mask,                     XK_k,      spawn,          {.v = upvol } },
-    { Mod4Mask,                     XK_j,      spawn,          {.v = downvol } },
+    { Mod4Mask,                     XK_k,      spawn,          {.v = largeupvol } },
+    { Mod4Mask,                     XK_j,      spawn,          {.v = largedownvol } },
+    { Mod4Mask|ShiftMask,           XK_k,      spawn,          {.v = smallupvol } },
+    { Mod4Mask|ShiftMask,           XK_j,      spawn,          {.v = smalldownvol } },
     { Mod4Mask,                     XK_m,      spawn,          {.v = mutevol } },
     { Mod4Mask,                     XK_l,      spawn,          {.v = playnext } },
     { Mod4Mask,                     XK_h,      spawn,          {.v = playprev } },
